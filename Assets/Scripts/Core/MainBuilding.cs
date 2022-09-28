@@ -9,16 +9,32 @@ namespace Core
         public float MaxHealth => _maxHealth;
         public Sprite Icon => _icon;
 
+        public GameObject SelectedMarker => _selectedMarker;
+
         [SerializeField] private GameObject _unitPrefab;
         [SerializeField] private Transform _unitsParent;
 
+
         [SerializeField] private float _maxHealth = 1000;
         [SerializeField] private Sprite _icon;
+        [SerializeField] private SelectableValue _selectedValue;
+
 
         private float _health = 1000;
+        private GameObject _selectedMarker;
+        
+        
+
+        public void SelectObject()
+        {
+            
+            _selectedMarker = Resources.Load<GameObject>("Marker");
+            Instantiate(_selectedMarker, transform);
+        }
 
         public void ProduceUnit()
         {
+            
             Instantiate(_unitPrefab,
                 new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)),
                 Quaternion.identity,
