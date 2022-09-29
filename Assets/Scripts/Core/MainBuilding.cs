@@ -17,21 +17,12 @@ namespace Core
 
         [SerializeField] private float _maxHealth = 1000;
         [SerializeField] private Sprite _icon;
-        [SerializeField] private SelectableValue _selectedValue;
-
+    
 
         private float _health = 1000;
         private GameObject _selectedMarker;
         
-        
-
-        public void SelectObject()
-        {
-            
-            _selectedMarker = Resources.Load<GameObject>("Marker");
-            Instantiate(_selectedMarker, transform);
-        }
-
+             
         public void ProduceUnit()
         {
             
