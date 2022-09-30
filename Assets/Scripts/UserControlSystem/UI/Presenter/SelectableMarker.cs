@@ -2,6 +2,7 @@ using UserControlSystem;
 using UnityEngine;
 using System.Linq;
 using Abstractions;
+using System;
 
 public sealed class SelectableMarker : MonoBehaviour
 {
@@ -28,9 +29,18 @@ public sealed class SelectableMarker : MonoBehaviour
         var selectable = hits
             .Select(hit => hit.collider.GetComponentInParent<ISelectable>())
             .FirstOrDefault(c => c != null);
-       if(selectable != null)
-        _selectableTransform = (selectable as Component).transform;
+
+        HighlightObject(selectable);
+      
+    }
+
+    private void HighlightObject(ISelectable selectable)
+    {
        
-        _marker = Instantiate(_selectableMarker, _selectableTransform.position, Quaternion.identity);
+        if (selectable != null)
+        {
+            _selectableTransform = (selectable as Component).transform;
+            _marker = Instantiate(_selectableMarker, _selectableTransform.position, Quaternion.identity);
+        }
     }
 }
