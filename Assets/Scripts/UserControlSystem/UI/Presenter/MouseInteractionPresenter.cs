@@ -7,7 +7,8 @@ public sealed class MouseInteractionPresenter : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private SelectableValue _selectedObject;
-    [SerializeField] private GameObject _selectableMarker;
+   
+   
 
     private void Update()
     {
@@ -24,7 +25,7 @@ public sealed class MouseInteractionPresenter : MonoBehaviour
             .Select(hit => hit.collider.GetComponentInParent<ISelectable>())
             .FirstOrDefault(c => c != null);
         _selectedObject.SetValue(selectable);
-       
-        Instantiate(_selectableMarker, new Vector3(Input.mousePosition.x, Input.mousePosition.y), Quaternion.identity);
+
+      
     }
 }
