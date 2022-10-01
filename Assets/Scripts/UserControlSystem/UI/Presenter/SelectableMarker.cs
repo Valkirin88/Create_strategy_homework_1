@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Linq;
 using Abstractions;
 
+
 public sealed class SelectableMarker : MonoBehaviour
 {
     [SerializeField] private GameObject _selectableMarker;
@@ -24,13 +25,20 @@ public sealed class SelectableMarker : MonoBehaviour
             
             return;
         }
+
         Destroy(_marker);
         var selectable = hits
             .Select(hit => hit.collider.GetComponentInParent<ISelectable>())
             .FirstOrDefault(c => c != null);
-       if(selectable != null)
-        _selectableTransform = (selectable as Component).transform;
-       
-        _marker = Instantiate(_selectableMarker, _selectableTransform.position, Quaternion.identity);
+        HighlightObject(selectable);
+    }
+
+    private void HighlightObject(ISelectable selectable)
+    {
+        if (selectable != null)
+        {
+            _selectableTransform = (selectable as Component).transform;
+            _marker = Instantiate(_selectableMarker, _selectableTransform.position, Quaternion.identity);
+        }
     }
 }
