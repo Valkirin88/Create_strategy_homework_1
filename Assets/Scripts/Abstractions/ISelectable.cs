@@ -8,6 +8,5 @@ namespace Abstractions
         float MaxHealth { get; }
         Sprite Icon { get; }
 
-        GameObject SelectedMarker { get; }
     }
 }

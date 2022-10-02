@@ -9,7 +9,6 @@ namespace Core
         public float MaxHealth => _maxHealth;
         public Sprite Icon => _icon;
 
-        public GameObject SelectedMarker => _selectedMarker;
 
         [SerializeField] private GameObject _unitPrefab;
         [SerializeField] private Transform _unitsParent;
@@ -20,9 +19,7 @@ namespace Core
     
 
         private float _health = 1000;
-        private GameObject _selectedMarker;
-        
-             
+              
         public void ProduceUnit()
         {
             
