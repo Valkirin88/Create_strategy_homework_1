@@ -5,15 +5,16 @@ using Abstractions;
 
 public sealed class SelectableMarkerCreator : MonoBehaviour
 {
-    [SerializeField] private GameObject _selectableMarker;
+    
     [SerializeField] private SelectableValue _selectedObject;
     private Transform _selectableTransform;
     private GameObject _marker;
-
+    private GameObject _selectableMarker;
 
 
     private void Start()
     {
+        _selectableMarker = Resources.Load<GameObject>("Marker");
         _selectedObject.OnSelected += HighlightObject;
         HighlightObject(_selectedObject.CurrentValue);
     }
